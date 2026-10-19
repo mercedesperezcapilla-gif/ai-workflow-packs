@@ -1,0 +1,14 @@
+{
+  "name": "dan-lifecycle-exercise",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "scripts": {
+    "test": "node --test tests/index.js",
+    "start": "node src/cli.ts",
+    "check-planted": "node --test tests/planted.js"
+  }
+}

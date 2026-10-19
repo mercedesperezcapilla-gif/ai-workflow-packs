@@ -1,0 +1,10 @@
+# Rules v1
+
+- Read source CSVs only. Write derived reports only under reports/. Never change records, clear exceptions or send instructions.
+- Match on exact record_id. Cross-process changes in account or instrument_code are record differences, not silent rematches. Within each process, record_id and the (account, instrument_code) position key must both be unique. Duplicates stop the run, never silently deduplicate.
+- Currency is GBP. All input amounts must have exactly 2 decimal places. Use Decimal arithmetic. Comparison tolerance is GBP 0.00 inclusive and quantity 0 units. A GBP 0.01 change is therefore a difference. Summary checks require exact equality.
+- Compute differences as Process B minus Process A. No netting across categories. Each detail record contributes once to exactly one category. Signed amounts may offset within a category, but every changed record remains listed even when the category aggregate is zero.
+- Required files are summary.csv and detail.csv for each process. All four canonical categories must appear once in each summary, including zero categories. Validate exact ordered schemas and all required fields. Detail must contain 1 to 39 records.
+- The only label aliases are UNMATCHED to Unmatched and Position Difference to Position difference. Canonical labels are Matched, Unmatched, Missing and Position difference. Apply aliases to summary and detail. Do not trim, case-fold, guess other aliases or merge Missing into Unmatched.
+- Quantities are signed integers, amounts are signed fixed-point GBP, instruments follow FIC-0001 format. Status is Open or Closed, consistent with definitions.md. A schema error, unknown label, invalid value, duplicate, missing file or summary-detail mismatch stops with exit code 1 before a report is written.
+- Reports use the date folder name and contain source paths. No timestamps or random ordering. Invalid runs do not overwrite earlier reports; a report left by a prior run is not evidence of a successful new run. Extra fixtures deliberately share a date and overwrite that date's report only on success.

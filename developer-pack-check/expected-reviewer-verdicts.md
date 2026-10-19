@@ -1,0 +1,15 @@
+# Expected acceptance reviewer verdicts
+
+Fictional worked practice. Keep this outside the working folder until checking.
+
+## Good solution: PASS with scope evidence
+
+src/lifecycle.ts in this check pack should pass all 10 tests. Check every criterion: ID-only sorted exclusive complete lists, changed amounts Continuing, immediate previous day, no-New sections, earlier sightings ignored, duplicate rejection and CLI failures without success output. Compare with the original starter to confirm only src/lifecycle.ts and the implementer's docs/handoff.md changed, apart from the lesson's explicitly allowed .claude skill and reviewer setup. If no history is available, state that scope could not be independently verified.
+
+The untouched starter is deliberately incomplete: 7 Not implemented failures and 3 safety passes. Do not weaken tests.
+
+## Planted candidate: FIX
+
+Run npm run check-planted. It runs the same acceptance tests against extra/planted/lifecycle-planted.ts without changing src/ or fixtures. Expect nine passes and one EVAL-04 failure.
+
+With eval-04-changed-r003-amount.json it wrongly gives New R003 to R007 and no Continuing IDs. REQ-1, EVAL-03 and EVAL-04 require R003 Continuing. same() compares whole JSON records, so changed amounts alter identity. Compare record_id membership only. Normal npm test checks src/ separately; npm run check-planted checks this alternative.
