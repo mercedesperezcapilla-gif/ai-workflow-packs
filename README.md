@@ -4,6 +4,21 @@ Practice packs for the three role workflows on [mercedeslab.ai](https://www.merc
 
 All people, organisations, clients and records are fictional. Everything here is free and educational.
 
+## The skills and agents
+
+| What | File | What it does |
+|---|---|---|
+| Skill | [skills/reconciliation](skills/reconciliation) | Runs the comparison script on a date folder and explains every difference with its records. The script does the sums. |
+| Reviewer agent | [agents/reconciliation-reviewer.md](agents/reconciliation-reviewer.md) | Read-only. Checks every figure against the script's results. PASS or FIX. |
+| Skill | [skills/write-testable-requirements](skills/write-testable-requirements) | Checks a request is ready, then drafts a brief, stories and test cases. Never invents decisions. |
+| Reviewer agent | [agents/requirements-reviewer.md](agents/requirements-reviewer.md) | Read-only. Checks every criterion is testable, sourced and has a failure case. |
+| Skill | [skills/implement-to-acceptance](skills/implement-to-acceptance) | Plans, builds one agreed change, runs the tests and writes the handover. |
+| Reviewer agent | [agents/acceptance-reviewer.md](agents/acceptance-reviewer.md) | Checks the change against every criterion and runs the tests, without editing. |
+| Agentic designs | [agentic/](agentic) | Coordinator skills that chain a skill and a reviewer, for scheduled or approved runs, with a person deciding. |
+
+To use one, copy it into your project's `.claude/skills/` or `.claude/agents/` folder. The workflows teach you to build your own first; these are the worked versions to compare with.
+
+
 | Role | Workflow | Starter pack | Answer key |
 |---|---|---|---|
 | Business and operations | [Compare two reconciliation processes](https://www.mercedeslab.ai/workflows/reconciliation) | [reconciliation-comparison](reconciliation-comparison) | [reconciliation-comparison-check](reconciliation-comparison-check) |
