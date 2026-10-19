@@ -18,6 +18,7 @@ All people, organisations, clients and records are fictional. Everything here is
 
 To use one, copy it into your project's `.claude/skills/` or `.claude/agents/` folder. The workflows teach you to build your own first; these are the worked versions to compare with.
 
+## The practice packs
 
 | Role | Workflow | Starter pack | Answer key |
 |---|---|---|---|
