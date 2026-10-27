@@ -1,17 +1,9 @@
-# Requirements draft for review
+# One story: planted criteria extract
 
-All people and data are fictional. This extract contains two deliberate mistakes. Review it as an extract, not as the complete three-file deliverable.
+All people and data are fictional. Review these three daily-story criteria; two contain deliberate defects.
 
-## AC-1: presentation
+AC-1. Source: request-from-riley.md, paragraph 2. Given a completed comparison, when Riley reads it, then the report is clear. Failure: it is not clear. Evidence: ask whether it is clear.
 
-Source claimed: request-from-riley.md, paragraph 2.
-Given a completed comparison, when Riley reads it, then the report is clear.
-Failure case: the report is not clear.
-Evaluation: ask Riley whether it is clear.
+AC-2. Source claimed: riley-answers.md, Who receives the result (REQ-3). Given a successful comparison, when ready, then automatically email it to Client 1 before 08:30. Failure: no email arrives. Evidence: sent-mail log.
 
-## AC-2: delivery
-
-Source claimed: riley-answers.md, Who receives the result (REQ-3).
-Given a successful comparison, when the draft is ready, then automatically email it to Client 1 before 08:30.
-Failure case: no email is sent before 08:30.
-Evaluation: check the sent-mail log and recipient.
+AC-3. Source: riley-answers.md, Missing or invalid input (REQ-4). Given an absent baseline, when classification is requested, then stop with a dated failure notice naming the missing file for Riley and Dan, preserve the last successful result and ask Riley for a baseline decision. Failure: produce success lists or overwrite the last result. Evidence: missing-baseline case and before/after result comparison.

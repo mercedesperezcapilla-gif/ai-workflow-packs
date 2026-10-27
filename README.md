@@ -28,7 +28,7 @@ To use one, copy it into your project's `.claude/skills/` or `.claude/agents/` f
 
 ## How to use a pack
 
-1. Follow the workflow page. It takes about 30 minutes, with a first result in about 10 to 12.
+1. Follow the workflow page. It takes about 15 minutes hands-on, with a first result in about 5.
 2. Download the starter pack (from the workflow page, or this repository) and open its folder in the Code tab of the Claude desktop app.
 3. Keep the answer key **outside** that folder until step 6, so Claude can't read it while you work.
 

@@ -4,7 +4,7 @@ Fictional worked practice. Keep this outside the working folder until checking.
 
 ## Good solution: PASS with scope evidence
 
-src/lifecycle.ts in this check pack should pass all 10 tests. Check every criterion: ID-only sorted exclusive complete lists, changed amounts Continuing, immediate previous day, no-New sections, earlier sightings ignored, duplicate rejection and CLI failures without success output. Compare with the original starter to confirm only src/lifecycle.ts and the implementer's docs/handoff.md changed, apart from the lesson's explicitly allowed .claude skill and reviewer setup. If no history is available, state that scope could not be independently verified.
+src/lifecycle.ts in this check pack should pass all 10 tests. Check the single REQ-1 criterion and supplied safety infrastructure: ID-only sorted exclusive complete lists, changed amounts Continuing, immediate previous day, no-New sections, earlier sightings ignored, duplicate rejection and CLI failures without success output. Compare with the original starter to confirm only src/lifecycle.ts and the implementer's docs/handoff.md changed, apart from the lesson's explicitly allowed .claude skill and reviewer setup. If no history is available, state that scope could not be independently verified.
 
 The untouched starter is deliberately incomplete: 7 Not implemented failures and 3 safety passes. Do not weaken tests.
 

@@ -20,3 +20,7 @@ For data/2026-10-16, PASS requires exit 1 naming process-b/summary.csv and befor
 The reference skill invokes .claude/skills/reconciliation/scripts/compare.py from the working folder. It must produce the same JSON and Markdown as the original root compare.py on the same inputs. Do not run from the scripts/ folder.
 
 The reference/ folder contains the worked skill and read-only reviewer. The reviewer has Read, Grep and Glob only; the caller supplies calculation and stop evidence.
+
+## Repeat: 14 October
+
+PASS requires a successful run for data/2026-10-14: only R003, a definition difference; B Unmatched 500000.00, A 200000.00. No R004 to R007 record differences. The later 16 October stop must preserve both successful reports byte for byte.

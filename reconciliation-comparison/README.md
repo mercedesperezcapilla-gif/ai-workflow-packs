@@ -47,3 +47,7 @@ Run the skill, then have the reviewer check the good output and extra/planted/ s
 A reviewer has no Edit or Write tool. Where Bash is allowed for checks, it can still write through commands: restrict parent-session command permissions to the stated checks. This is not an operating-system read-only sandbox.
 
 Format references: https://code.claude.com/docs/en/skills and https://code.claude.com/docs/en/sub-agents.
+
+## Fifteen-minute core
+
+Do 5 min: compare 15 October. Reuse 3 min: save the skill with the bundled script and rules. Repeat 3 min: predict then compare 14 October; only R003 remains, with B Unmatched GBP 500000.00. Then 16 October must stop for process-b/summary.csv with report contents unchanged. Trust 4 min: create the read-only reviewer and check the good and planted reports. Setup is extra; Design your own is a separate 2 minutes. Wider evaluation is optional.

@@ -14,3 +14,5 @@ On success, read this run's JSON and Markdown under reports/. Check source_folde
 Return report paths, exit status and a short explanation in chat. Only compare.py may write its derived reports. A person decides follow-up; send nothing.
 
 The bundled script calculates; these instructions tell Claude how to run it and explain the result. The script uses the current working folder for inputs and reports. Keep the skill folder, script and reference rules together when reusing it. Adapt and test them together if rules change.
+
+Core repeat: ask for a prediction before 14 October, then run it. For the separate 16 October missing-input check capture report paths and contents before and after; require no creation or overwrite.

@@ -23,3 +23,7 @@ Format references: https://code.claude.com/docs/en/skills and https://code.claud
 ## Planted review check
 
 Run `npm run check-planted` to test the planted alternative without changing src/ or fixtures. It deliberately fails EVAL-04. `npm test` checks your implementation separately.
+
+## Fifteen-minute core
+
+One approved criterion in docs/acceptance.md, one function: classify(). Existing validation and CLI are supplied infrastructure. Do 5 min; Reuse 3; Repeat 3; Trust 4. Setup is extra. Predict eval-08: no New, Continuing R003, no Resolved; run npm start -- fixtures/comparison-2026-10-14.json fixtures/eval-08-today-same-as-yesterday.json. Then use fixtures/eval-10-missing-baseline.json as the baseline and require STOP without success output. Keep fixtures unchanged. Record concise handover evidence. Design your own adds 2 min; detailed evaluation and orchestration are optional.

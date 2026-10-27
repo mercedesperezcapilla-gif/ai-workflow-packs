@@ -1,18 +1,9 @@
 # Expected requirements reviewer verdicts
 
-Fictional worked practice. Keep this outside the working folder until checking.
+Fictional worked practice. No live agent execution is claimed.
 
-## Good output: PASS
+PASS: original request receives Needs clarification before answers are opened, with three decisions (identity, recipient/channel, invalid inputs) and four-issue evidence. After authorised answers, one story has exactly three sourced, testable criteria with explicit failure cases: membership, internal evidence and safe stops. Use answer-key.md for expected values. No tracker writes.
 
-The original request receives Needs clarification before Riley's answers are read. A complete post-clarification draft traces every criterion to the request or relevant Riley answer heading, with concrete inputs, observable outputs, a failure case and evaluation coverage. Use answer-key.md for business decisions, not exact wording. Every criterion still needs an explicit failure case, including where the reference embeds one in Given, When, Then wording. Review the generated draft before assigning PASS.
+Changed request: Needs clarification for weekly window, weekly newness and recurring/resolved presentation. Daily answers cannot approve weekly scope. Missing answers: stop and name the file; no new story and no overwrite of the daily draft.
 
-REQ-1 and EVAL-04 retain changed R003 as Continuing. REQ-3 permits only an internal draft for Riley. RECON-104 is the scheduling dependency, RECON-109 stays separate and RECON-107 cannot force readiness. No tracker writes.
-
-## Planted extract: FIX
-
-1. AC-1, 'report is clear', has no observable measure. Its failure case and evaluation repeat the subjective judgement. The claimed request source asks to retain counts, amounts and references, not a clarity threshold. Propose evidence retention from REQ-2 or ask Riley for a measure; do not invent one.
-2. AC-2 invents automatic email to Client 1. riley-answers.md, Who receives the result (REQ-3), specifies Riley alone, an internal review folder and no email or chat. Return the conflict to James; send nothing.
-
-Review this file as an extract, not as the complete deliverable.
-
-Compare your saved instructions with the visible reference/ folder. The reviewer uses Read, Grep and Glob only and returns findings without changing drafts.
+Planted extract: FIX AC-1 because 'report is clear' and its failure are subjective; paragraph 2 supplies retained evidence, not a clarity threshold. FIX AC-2 because automatic email to Client 1 contradicts riley-answers.md, Who receives the result (REQ-3): Riley only, internal draft, no email or chat. AC-3 correctly specifies the missing-baseline stop. Review the extract as three criteria, not a missing complete file.
