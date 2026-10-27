@@ -48,6 +48,6 @@ A reviewer has no Edit or Write tool. Where Bash is allowed for checks, it can s
 
 Format references: https://code.claude.com/docs/en/skills and https://code.claude.com/docs/en/sub-agents.
 
-## Fifteen-minute core
+## Core workflow
 
-Do 5 min: compare 15 October. Reuse 3 min: save the skill with the bundled script and rules. Repeat 3 min: predict then compare 14 October; only R003 remains, with B Unmatched GBP 500000.00. Then 16 October must stop for process-b/summary.csv with report contents unchanged. Trust 4 min: create the read-only reviewer and check the good and planted reports. Setup is extra; Design your own is a separate 2 minutes. Wider evaluation is optional.
+Do: compare 15 October. Reuse: save the skill with the bundled script and rules. Repeat: predict then compare 14 October; only R003 remains, with B Unmatched GBP 500000.00. Then 16 October must stop for process-b/summary.csv with report contents unchanged. Trust: create the read-only reviewer and check the good and planted reports. Setup is extra; Design your own is optional. Wider evaluation is optional.

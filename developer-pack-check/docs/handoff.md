@@ -1,14 +1,11 @@
-# Completed example handoff
+# Worked handoff
 
-Changes: Implemented REQ-1 with ID sets and a consecutive-day guard.
+Changes: REQ-1 classify() and REQ-2 changedContinuing() in src/lifecycle.ts. CLI wiring and tests are supplied infrastructure.
 
-Checks run: Example review cycle used EVAL-04 to check changed amounts. See the actual R5 verification in the repository handoff for executed checks.
+Checks: npm test expects 15 passes. EVAL-04 gives Changed since yesterday: R003; 15 October and EVAL-08 give None. Missing baseline stops without success output. npm run check-planted expects nine passes, one EVAL-04 failure and five REQ-2 skips.
 
-Findings: Illustrative first version used record values as identity. The reviewer observed R003 incorrectly becoming New when its amount changed in EVAL-04. Fix: compare record_id sets only. This is a worked review example, not a claim of a separate reviewer run.
+Findings: planted whole-record identity wrongly makes R003 New. REQ-1 uses record_id; REQ-2 compares values separately. This is worked evidence, not a live reviewer run.
 
-Unresolved: Source CSV validation, scheduled runtime, delivery, monitoring and recovery are outside scope.
+Unresolved: no live integration, scheduling, source CSV verification or pilot. No independent change history in a downloaded folder.
 
-Next action: A person reviews acceptance evidence before approving this increment; Riley decides baseline recovery.
-
-Source revision: R5, 18 October 2026; comparison rules v1, definitions v1.
-Actual R5 checks: Node 24.19.0, node --test tests/ in a temporary starter copy with this solution substituted: 10 passed, 0 failed. Unmodified starter: 7 failed with Not implemented: REQ-1, 3 safety checks passed. The initial directory discovery failure was fixed with tests/index.js before the second verification cycle.
+Next action: human acceptance. Source revision: R5 fixtures; approved REQ-2, 27 October 2026.

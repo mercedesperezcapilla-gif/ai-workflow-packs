@@ -22,13 +22,13 @@ To use one, copy it into your project's `.claude/skills/` or `.claude/agents/` f
 
 | Role | Workflow | Starter pack | Answer key |
 |---|---|---|---|
-| Business and operations | [Compare two reconciliation processes](https://www.mercedeslab.ai/workflows/reconciliation) | [reconciliation-comparison](reconciliation-comparison) | [reconciliation-comparison-check](reconciliation-comparison-check) |
-| Product managers and BAs | [From a need to testable requirements](https://www.mercedeslab.ai/workflows/product-ba) | [product-ba-pack](product-ba-pack) | [product-ba-pack-check](product-ba-pack-check) |
-| Developers and engineers | [Build and review one change](https://www.mercedeslab.ai/workflows/development-engineering) | [developer-pack](developer-pack) | [developer-pack-check](developer-pack-check) |
+| Business and operations | [Automate your daily reconciliation report](https://www.mercedeslab.ai/workflows/reconciliation) | [reconciliation-comparison](reconciliation-comparison) | [reconciliation-comparison-check](reconciliation-comparison-check) |
+| Product managers and BAs | [Turn vague requests into ready-to-discuss stories](https://www.mercedeslab.ai/workflows/product-ba) | [product-ba-pack](product-ba-pack) | [product-ba-pack-check](product-ba-pack-check) |
+| Developers and engineers | [From approved requirement to tested handover](https://www.mercedeslab.ai/workflows/development-engineering) | [developer-pack](developer-pack) | [developer-pack-check](developer-pack-check) |
 
 ## How to use a pack
 
-1. Follow the workflow page. It takes about 15 minutes hands-on, with a first result in about 5.
+1. Follow the workflow page. It takes about 15 minutes hands-on, plus setup.
 2. Download the starter pack (from the workflow page, or this repository) and open its folder in the Code tab of the Claude desktop app.
 3. Keep the answer key **outside** that folder until step 6, so Claude can't read it while you work.
 

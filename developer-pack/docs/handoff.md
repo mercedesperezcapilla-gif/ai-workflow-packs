@@ -1,8 +1,8 @@
 # Handoff
 
-Changes:
+Changes (REQ-1, then REQ-2):
 
-Checks run:
+Checks run (separate REQ-1, REQ-2 and planted evidence):
 
 Findings:
 

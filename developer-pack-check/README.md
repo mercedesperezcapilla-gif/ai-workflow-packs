@@ -1,6 +1,6 @@
-# Dan implements REQ-1
+# Dan implements REQ-1 and REQ-2
 
-A tiny dependency-free TypeScript exercise using fictional comparison reports. This check pack supplies the reviewed solution. All ten tests should pass. The separate developer-pack-check folder contains the worked solution. Keep it outside the implementing tool's project.
+A tiny dependency-free TypeScript exercise using fictional comparison reports. This check pack supplies the reviewed solution. All 15 tests should pass. The separate developer-pack-check folder contains the worked solution. Keep it outside the implementing tool's project.
 
 Read docs/ first. Use Node 22.18 or later, which runs TypeScript directly with no flags.
 
@@ -16,9 +16,9 @@ The visible reference/ folder contains worked files to compare with the skill an
 
 ## Planted review check
 
-Run `npm run check-planted` to test the planted alternative without changing src/ or fixtures. It deliberately fails EVAL-04. `npm test` checks your implementation separately.
+Run `npm run check-planted` to test the planted alternative without changing src/ or fixtures. It deliberately fails EVAL-04 only: nine passes and five REQ-2 skips. `npm test` checks your implementation separately.
 
 
-## Fifteen-minute core
+## Core workflow
 
-One approved criterion in docs/acceptance.md, one function: classify(). Existing validation and CLI are supplied infrastructure. Do 5 min; Reuse 3; Repeat 3; Trust 4. Setup is extra. Predict eval-08: no New, Continuing R003, no Resolved; run npm start -- fixtures/comparison-2026-10-14.json fixtures/eval-08-today-same-as-yesterday.json. Then use fixtures/eval-10-missing-baseline.json as the baseline and require STOP without success output. Keep fixtures unchanged. Record concise handover evidence. Design your own adds 2 min; detailed evaluation and orchestration are optional.
+Do REQ-1, save the skill, then reuse it for approved REQ-2: changedContinuing(). The CLI wiring is supplied. Predict R003 for EVAL-04; 15 October and EVAL-08 give None. Missing baseline must STOP without success output. Trust uses the read-only reviewer and separate normal and planted checks. Setup, adaptation and detailed evaluation are extra.

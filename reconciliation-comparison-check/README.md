@@ -9,6 +9,6 @@ The visible reference/ folder contains worked files to compare with the skill an
 reference-reports/ preserves the previously generated worked reports. The reference comparison skill bundles its script and calculation rules. Run the bundled script from a working copy of the input pack after copying the reference skill there; its inputs and reports belong to that working folder.
 
 
-## Fifteen-minute core
+## Core workflow
 
-Do 5 min: compare 15 October. Reuse 3 min: save the skill with the bundled script and rules. Repeat 3 min: predict then compare 14 October; only R003 remains, with B Unmatched GBP 500000.00. Then 16 October must stop for process-b/summary.csv with report contents unchanged. Trust 4 min: create the read-only reviewer and check the good and planted reports. Setup is extra; Design your own is a separate 2 minutes. Wider evaluation is optional.
+Do: compare 15 October. Reuse: save the skill with the bundled script and rules. Repeat: predict then compare 14 October; only R003 remains, with B Unmatched GBP 500000.00. Then 16 October must stop for process-b/summary.csv with report contents unchanged. Trust: create the read-only reviewer and check the good and planted reports. Setup is extra; Design your own is optional. Wider evaluation is optional.

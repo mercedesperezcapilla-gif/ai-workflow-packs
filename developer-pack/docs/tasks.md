@@ -1,5 +1,5 @@
-# Core task
+# Core tasks
 
-Do (5 min): implement the one approved REQ-1 criterion in classify() only, then run npm test. Reuse (3 min): save implement-to-acceptance. Repeat (3 min): predict and run eval-08, then a missing baseline. Trust (4 min): create acceptance-reviewer and inspect normal and planted checks. Setup is extra; design your own is a separate 2 minutes.
+Do: implement approved REQ-1 in classify() and run npm test. Its ten tests should pass while five REQ-2 tests remain unfinished. Reuse: save implement-to-acceptance. Repeat: use the skill for approved REQ-2 in changedContinuing(); predict R003 for EVAL-04, then check 15 October and EVAL-08 give None. Try a missing baseline: STOP without success output is the guard working. Trust: create acceptance-reviewer and inspect normal and planted checks separately.
 
-Only src/lifecycle.ts and docs/handoff.md may change, apart from learner-created .claude skill/reviewer files. No fixture or test edits. Record actual checks and limitations. No commit, merge or deployment.
+Only src/lifecycle.ts and docs/handoff.md may change, apart from learner-created .claude skill/reviewer files. No fixture or test edits. Record actual checks and limitations. At most two cycles, then a person decides. No commit, merge or deployment.
