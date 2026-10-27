@@ -80,4 +80,72 @@ class ComparisonTests(unittest.TestCase):
             p.write_text(p.read_text().replace('SIM-002,FIC-0002','SIM-001,FIC-0001'))
             with self.assertRaisesRegex(compare.InvalidInput,'Duplicate position key'): compare.compare(folder)
 
+
+class IntegrityTests(unittest.TestCase):
+    def test_calendar_dates_and_preservation(self):
+        import contextlib
+        import io
+        import shutil
+        from unittest.mock import patch
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            reports = root / 'reports'
+            reports.mkdir()
+            for name in ['2026-02-30', '2026-13-01', '2026-02-29', '2026-00-10']:
+                stem = reports / ('comparison-' + name)
+                for suffix in ['.md', '.json']:
+                    stem.with_suffix(suffix).write_text('previous ' + suffix)
+                error = io.StringIO()
+                with patch.object(compare, 'ROOT', root), contextlib.redirect_stderr(error):
+                    self.assertEqual(compare.main([str(root / name)]), 1)
+                self.assertIn('STOP: Invalid ISO calendar date', error.getvalue())
+                for suffix in ['.md', '.json']:
+                    self.assertEqual(stem.with_suffix(suffix).read_text(), 'previous ' + suffix)
+            for name in ['2028-02-29', '2027-01-01']:
+                folder = root / name
+                shutil.copytree(compare.ROOT / 'data/2026-10-14', folder)
+                with patch.object(compare, 'ROOT', root):
+                    self.assertEqual(compare.compare(folder)['date'], name)
+
+    def test_second_write_failure_preserves_pair(self):
+        import contextlib
+        import io
+        from unittest.mock import patch
+        result = compare.compare(compare.ROOT / 'data/2026-10-15')
+        original = Path.write_text
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            (root / 'reports').mkdir()
+            stem = root / 'reports/comparison-2026-10-15'
+            for suffix in ['.md', '.json']:
+                stem.with_suffix(suffix).write_text('previous ' + suffix)
+            def fail_second(path, *args, **kwargs):
+                if path.name == '1':
+                    raise OSError('forced second write failure')
+                return original(path, *args, **kwargs)
+            error = io.StringIO()
+            with patch.object(compare, 'ROOT', root), patch.object(compare, 'compare', return_value=result), patch.object(Path, 'write_text', fail_second), contextlib.redirect_stderr(error):
+                self.assertEqual(compare.main(['unused']), 1)
+            self.assertIn('STOP:', error.getvalue())
+            self.assertIn('No report changed', error.getvalue())
+            for suffix in ['.md', '.json']:
+                self.assertEqual(stem.with_suffix(suffix).read_text(), 'previous ' + suffix)
+
+    def test_second_replacement_failure_rolls_back(self):
+        from unittest.mock import patch
+        original = Path.replace
+        with tempfile.TemporaryDirectory() as temporary:
+            stem = Path(temporary) / 'comparison-2026-10-15'
+            for suffix in ['.md', '.json']:
+                stem.with_suffix(suffix).write_text('previous ' + suffix)
+            def fail_second(path, target):
+                if path.name == '1':
+                    raise OSError('forced second replacement failure')
+                return original(path, target)
+            with patch.object(Path, 'replace', fail_second):
+                with self.assertRaisesRegex(compare.ReportWriteError, 'No report changed'):
+                    compare.write_reports(stem, ('new markdown', 'new json'))
+            for suffix in ['.md', '.json']:
+                self.assertEqual(stem.with_suffix(suffix).read_text(), 'previous ' + suffix)
+
 if __name__ == '__main__': unittest.main()

@@ -3,6 +3,9 @@ import csv
 import json
 import re
 import sys
+import tempfile
+import shutil
+from datetime import date
 from decimal import Decimal
 from pathlib import Path
 
@@ -73,7 +76,11 @@ def load(folder, process):
 
 def compare(folder):
     folder = Path(folder).resolve()
-    require(bool(re.fullmatch(r'2026-\d{2}-\d{2}', folder.name)), 'Select a dated folder, for example data/2026-10-15')
+    try:
+        parsed = date.fromisoformat(folder.name)
+    except ValueError:
+        raise InvalidInput('Invalid ISO calendar date: ' + folder.name)
+    require(parsed.isoformat() == folder.name, 'Invalid ISO calendar date: ' + folder.name)
     required = [folder / p / f for p in ('process-a', 'process-b') for f in ('summary.csv', 'detail.csv')]
     missing = [p.relative_to(folder).as_posix() for p in required if not p.is_file()]
     require(not missing, 'Missing required file(s): ' + ', '.join(missing))
@@ -146,6 +153,47 @@ def markdown(result):
     return '\n'.join(lines) + '\n'
 
 
+class ReportWriteError(OSError):
+    pass
+
+
+def write_reports(stem, contents):
+    """Stage both files, retaining on-disk backups until publication succeeds."""
+    targets = [stem.with_suffix('.md'), stem.with_suffix('.json')]
+    replaced = []
+    temporary = Path(tempfile.mkdtemp(prefix='.comparison-', dir=stem.parent))
+    keep_backups = False
+    backups = {}
+    try:
+        try:
+            for index, (target, content) in enumerate(zip(targets, contents)):
+                backups[target] = target.read_bytes() if target.exists() else None
+                if backups[target] is not None:
+                    (temporary / ('backup-' + str(index))).write_bytes(backups[target])
+                (temporary / str(index)).write_text(content, encoding='utf-8')
+            for index, target in enumerate(targets):
+                (temporary / str(index)).replace(target)
+                replaced.append(target)
+        except (OSError, UnicodeError) as error:
+            failures = []
+            for target in reversed(replaced):
+                try:
+                    if backups[target] is None:
+                        target.unlink()
+                    else:
+                        index = targets.index(target)
+                        (temporary / ('backup-' + str(index))).replace(target)
+                except OSError as rollback_error:
+                    failures.append(str(rollback_error))
+            if failures:
+                keep_backups = True
+                raise ReportWriteError(str(error) + '. Rollback incomplete; reports may have changed. Recovery backups retained at ' + str(temporary) + '. ' + '; '.join(failures))
+            raise ReportWriteError(str(error) + '. No report changed; previous report pair preserved.')
+    finally:
+        if not keep_backups:
+            shutil.rmtree(temporary, ignore_errors=True)
+
+
 def main(argv=None):
     argv = sys.argv[1:] if argv is None else argv
     try:
@@ -154,10 +202,13 @@ def main(argv=None):
         output = ROOT / 'reports'
         output.mkdir(exist_ok=True)
         stem = output / ('comparison-' + result['date'])
-        stem.with_suffix('.md').write_text(markdown(result), encoding='utf-8')
-        stem.with_suffix('.json').write_text(serialise(result), encoding='utf-8')
+        contents = (markdown(result), serialise(result))
+        write_reports(stem, contents)
         print(f"OK {result['date']}: 4 files validated; {len(result['record_differences'])} record differences; reports/{stem.name}.md and .json")
         return 0
+    except ReportWriteError as error:
+        print(f'STOP: {error}', file=sys.stderr)
+        return 1
     except (InvalidInput, OSError, csv.Error, UnicodeError) as error:
         print(f'STOP: {error}. No report written for this run.', file=sys.stderr)
         return 1

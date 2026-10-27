@@ -38,6 +38,27 @@ test('CLI stops on missing baseline without success output', () => {
 test('report validation rejects bad dates and missing fields', () => {
   assert.throws(()=>validateReport({...today,date:'2026-02-30'}),/date/);
   assert.throws(()=>validateReport({...today,record_differences:undefined}),/record_differences/);
+  // Infrastructure boundaries run before either learner requirement is implemented.
+  const invalid = (mutate: (report: any) => void, message: RegExp) => {
+    const report = structuredClone(today); mutate(report);
+    assert.throws(()=>validateReport(report), message);
+  };
+  invalid(r => { r.record_differences[0].process_a = {record_id:'R003'}; }, /Incomplete/);
+  invalid(r => { r.record_differences[0].process_a.amount_gbp = 'NaN'; }, /amount_gbp/);
+  invalid(r => { r.categories[0].process_a.count = -1; }, /Negative source count/);
+  invalid(r => { r.categories[0].difference_b_minus_a.count = 0; }, /delta/);
+  invalid(r => { r.categories[0].difference_b_minus_a.amount_gbp = '500000.01'; }, /delta/);
+  invalid(r => { r.record_differences[0].process_a.quantity = 1.5; }, /quantity/);
+  invalid(r => { r.record_differences[0].process_a.status = 'Changed'; }, /status/);
+  invalid(r => { r.record_differences[0].process_a.category = 'Unknown'; }, /category/);
+  for (const amount of ['1', '1.001', 'Infinity']) invalid(r => { r.record_differences[0].process_a.amount_gbp = amount; }, /amount_gbp/);
+  const exact = structuredClone(today) as any;
+  exact.categories[0].process_a.amount_gbp = '900719925474099.01';
+  exact.categories[0].process_b.amount_gbp = '900719925474099.02';
+  exact.categories[0].difference_b_minus_a.amount_gbp = '0.01';
+  validateReport(exact);
+  exact.categories[0].difference_b_minus_a.amount_gbp = '0.00';
+  assert.throws(()=>validateReport(exact), /delta/);
 });
 test('CLI stops on invalid current file and names it', () => {
   const run=cli('fixtures/comparison-2026-10-14.json','fixtures/eval-11-duplicate-r004.json');
@@ -60,7 +81,7 @@ test('REQ-2: sorted Continuing only, either side, ignores metadata and key order
   const baseline = structuredClone(today); baseline.date = '2026-10-14';
   const current = structuredClone(today);
   current.record_differences.reverse();
-  current.record_differences.find(r=>r.record_id==='R005')!.process_b!.status = 'Changed';
+  current.record_differences.find(r=>r.record_id==='R005')!.process_b!.quantity = 2;
   current.record_differences.find(r=>r.record_id==='R003')!.process_a!.amount_gbp = '1.00';
   const row = current.record_differences.find(r=>r.record_id==='R004')!;
   row.process_a = Object.fromEntries(Object.entries(row.process_a!).reverse());

@@ -10,7 +10,7 @@ All people, organisations, clients and records are fictional. Everything here is
 |---|---|---|
 | Skill | [skills/reconciliation](skills/reconciliation) | Runs the comparison script on a date folder and explains every difference with its records. The script does the sums. |
 | Reviewer agent | [agents/reconciliation-reviewer.md](agents/reconciliation-reviewer.md) | Read-only. Checks every figure against the script's results. PASS or FIX. |
-| Skill | [skills/write-testable-requirements](skills/write-testable-requirements) | Checks a request is ready, then drafts a brief, stories and test cases. Never invents decisions. |
+| Skill | [skills/write-testable-requirements](skills/write-testable-requirements) | Checks a request is ready, then drafts one story with three testable criteria. Never invents decisions. |
 | Reviewer agent | [agents/requirements-reviewer.md](agents/requirements-reviewer.md) | Read-only. Checks every criterion is testable, sourced and has a failure case. |
 | Skill | [skills/implement-to-acceptance](skills/implement-to-acceptance) | Plans, builds one agreed change, runs the tests and writes the handover. |
 | Reviewer agent | [agents/acceptance-reviewer.md](agents/acceptance-reviewer.md) | Checks the change against every criterion and runs the tests, without editing. |
@@ -30,7 +30,7 @@ To use one, copy it into your project's `.claude/skills/` or `.claude/agents/` f
 
 1. Follow the workflow page. It takes about 15 minutes hands-on, plus setup.
 2. Download the starter pack (from the workflow page, or this repository) and open its folder in the Code tab of the Claude desktop app.
-3. Keep the answer key **outside** that folder until step 6, so Claude can't read it while you work.
+3. Keep the answer key **outside** that folder until you reach "Check your work" in Go further, so Claude can't read it while you work.
 
 Each answer key has a `reference/` folder with a finished skill and reviewer agent to compare against yours, plus `expected-reviewer-verdicts.md`.
 
